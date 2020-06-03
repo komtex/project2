@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Create...
+{% endblock %}
+
+{% block content %}
+    <h2>Create a new channel or join an existent one!</h2>
+<div>
+    <form action="/create" method="post">
+        <div class="form-group">
+            <input type="text" class="form-control" name="channel" id="channel" autocomplete="off" autofocus>
+        </div>
+        <button class="btn btn-primary" type="submit">Create</button>
+    </form>
+
+
+</div>
+    <script>
+
+        if (localStorage.getItem('last_channel')) {
+                  // localStorage.clear()
+                // Redirect to last channel
+            let channel = localStorage.getItem('last_channel');
+            window.location.replace('/channels/' + channel);
+        }
+        document.querySelector('#reset').onclick = () => {
+                    socket.emit("reset");
+                    localStorage.removeItem("username");
+                    localStorage.clear();
+                    localStorage.removeItem("channel");
+                    localStorage.removeItem("message");
+                };
+for(let i=0; i < localStorage.length; i++) {
+  let key = localStorage.key(i);
+  alert(`${key}: ${localStorage.getItem(key)}`);
+}
+
+    </script>
+{% endblock %}

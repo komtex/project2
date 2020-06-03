@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- BOOTSTRAP CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- MY CSS -->
+        <link rel="stylesheet" href="../static/style.css">
+        <script src="{{ url_for('static', filename='channel.js') }}"></script>
+        <!-- JQUERY (First) -->
+        <script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <!-- BOOTSTRAP JS (Last) -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        <!-- Socket IO JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.slim.js"></script>
+
+        {% block head %}
+        {% endblock %}
+
+        <title>
+          Project 2: {% block title %}{% endblock %}
+        </title>
+    </head>
+    <body>
+      {% if session.username %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light custom-nav">
+          <a class="navbar-brand" href="/">
+            <img class="logo" src="../static/chat3.png" width="60" height="60" alt="Chat">
+          </a>
+          <button id="reset" class="btn btn-sm btn-secondary" type="button">Reset</button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>bat
+            </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a id="newChannel" class="nav-link" href="/"> + Channel</a>
+                  </li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">channels</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            {% for channel in channels %}
+                        <a class="dropdown-item" href="/channels/{{ channel }}">{{ channel }}</a>
+                            {% endfor %}
+                      </div>
+                    </li>
+                </ul>
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" style="color:#181ac7">{{ session.username }}</a>
+                    </li>
+                      <li class="nav-item">
+                        <a id="logout" class="nav-link" href="/logout">Logout</a>
+                      </li>
+                  </ul>
+              </div>
+                    {% else %}
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center custom-nav">
+                      <a class="navbar-brand" href="#">
+                        <img class="logo" src="../static/chat3.png" width="60" height="60" alt="Chat">
+                      </a>
+                    </nav>
+                    {% endif %}
+        </nav>
+      <section class ="content">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+            <span>{{ message }}</span>
+        </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <main class="container p-5">
+        {% block content %}
+        {% endblock %}
+    </main>
+  </section>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+main
+{
+    /* scroll horizontally as needed */
+    overflow-x: auto;
+    /* center contents */
+    text-align: center;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+nav {
+  position: relative;
+  margin: 2px;
+  top: 2rem;
+  background: #ebd4d4;
+  padding: .5rem;
+}
+nav a:hover {
+  color:#5c9f7f;
+}
+
+nav a {
+  color: #e6dddd;
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 1.6rem;
+  text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+.logo {
+  color: #54b7e6;
+  margin-left: 0.5rem;
+  -webkit-box-shadow: 5px 10px 15px 10px #d5ded6;
+  box-shadow: 5px 10px 15px 10px #bac1bb;
+}
+
+.content {
+  padding: 0;
+  margin: 2em 0;
+}
+
+.custom-nav {
+    border: 0px;
+    padding: 0;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.channel-window {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 25rem 200px 100;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-radius: 2px;
+    border: 1px solid red;
+    padding: 30px;
+}
+
+#message-box {
+    align-self: center;
+}
+
+#message-box {
+    margin: 30px 20px 10px 30px;
+}
+
+#chat {
+    padding: 20px;
+}
+#output {
+    height: 45px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+  }
+body {
+  background-color: lightgray;
+}
+
+@keyframes move {
+         0% {
+             left: 0%;
+         }
+         50% {
+             left: 50%;
+         }
+         100% {
+             left: 0%;
+         }
+     }
+@keyframes bounce{from{color:grey;
+          font-size:4vh;} to {color:white;
+          font-size:3vh;}}
+
+     h1 {
+         font-weight: bold;
+         font-size: 2rem;
+         font-family: 'Bangers', cursive;
+         color: white;
+         text-align: center;
+         position: relative;
+         animation-name: move, bounce;
+         animation-duration: 5s, 4s;
+         animation-fill-mode: forwards;
+         animation-iteration-count: 2, 5;
+         animation-direction: alternate;
+     }
